@@ -11,9 +11,15 @@ namespace DateMe.Controllers
             return View();
         }
 
-        public IActionResult FillOutApplication() // The action doesn't have to be the same as the view, but it can
+        [HttpGet]
+        public IActionResult DatingApplication() // The action doesn't have to be the same as the view, but it can
         {
-            return View("Datingapplication");
+            return View("DatingApplication");
+        }
+        [HttpPost]
+        public IActionResult DatingApplication(Application response)
+        {
+            return View("Confirmation");
         }
     }
 }
