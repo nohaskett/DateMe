@@ -3,7 +3,14 @@
 *@
 @{
 }
+@model Application
 
-<h2>Application Received. Thank you!</h2>
+@if (Model.CreeperStalker == false)
+{
+    <h1>Application Received. Thank you, @Model.FirstName.</h1>
+}
+else
+{
+    <h3>Oh shoot, my bad.</h3>
+}
 
-<h3>Although, you really should be thanking me for the chance to date me.</h3>
