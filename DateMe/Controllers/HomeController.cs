@@ -22,6 +22,10 @@ namespace DateMe.Controllers
         [HttpGet]
         public IActionResult DatingApplication() // The action doesn't have to be the same as the view, but it can
         {
+            ViewBag.Majors = _context.Majors
+                .OrderBy(x => x.MajorName)
+                .ToList();
+
             return View("DatingApplication");
         }
         [HttpPost]

@@ -15,11 +15,11 @@ namespace DateMe.Models
         {
             modelBuilder.Entity<Major>().HasData(
 
-                new Major { MajorID = 1, MajorName = "Information Systems"},
-                new Major { MajorID = 2, MajorName = "Computer Science"},
-                new Major { MajorID = 3, MajorName = "Magic"},
-                new Major { MajorID = 4, MajorName = "Banana Stand"},
-                new Major { MajorID = 5, MajorName = "Business Administration"}
+                new Major { MajorId = 1, MajorName = "Information Systems"},
+                new Major { MajorId = 2, MajorName = "Computer Science"},
+                new Major { MajorId = 3, MajorName = "Magic"},
+                new Major { MajorId = 4, MajorName = "Banana Stand"},
+                new Major { MajorId = 5, MajorName = "Business Administration"}
                 );
         }
     }

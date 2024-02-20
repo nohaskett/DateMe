@@ -5,7 +5,7 @@ namespace DateMe.Models
     public class Major
     {
         [Key]
-        public int MajorID { get; set; }
+        public int MajorId { get; set; }
         public string MajorName { get; set; }
 
     }

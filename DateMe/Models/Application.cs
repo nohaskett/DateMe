@@ -14,7 +14,7 @@ namespace DateMe.Models
         public string PhoneNumber { get; set; }
 
         [ForeignKey("MajorId")]
-        public string MajorId { get; set; }
+        public int MajorId { get; set; }
         public Major Major { get; set; }
 
         public string Occupation { get; set; }
