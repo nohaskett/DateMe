@@ -1,5 +1,6 @@
 using DateMe.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace DateMe.Controllers
@@ -8,7 +9,7 @@ namespace DateMe.Controllers
     {
         private DatingApplicationContext _context;
         
-        public HomeController(DatingApplicationContext temp) // Constructor
+        public HomeController(DatingApplicationContext temp) // Constructor, when Home Controller is built, bring na instance of the database
         {
             _context = temp;
         }
@@ -30,6 +31,16 @@ namespace DateMe.Controllers
             _context.SaveChanges();
 
             return View("Confirmation", response);
+        }
+
+        public IActionResult WaitList ()
+        {
+            // Link
+            var applications = _context.Applications
+                .Where(x => x.CreeperStalker == false)
+                .OrderBy(x => x.LastName).ToList();
+
+            return View(applications);
         }
     }
 }
