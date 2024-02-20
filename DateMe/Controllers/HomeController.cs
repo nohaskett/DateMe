@@ -33,9 +33,9 @@ namespace DateMe.Controllers
             return View("Confirmation", response);
         }
 
-        public IActionResult WaitList ()
+        public IActionResult WaitList()
         {
-            // Link
+            // Linq
             var applications = _context.Applications
                 .Where(x => x.CreeperStalker == false)
                 .OrderBy(x => x.LastName).ToList();
