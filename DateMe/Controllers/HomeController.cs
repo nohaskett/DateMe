@@ -26,15 +26,27 @@ namespace DateMe.Controllers
                 .OrderBy(x => x.MajorName)
                 .ToList();
 
-            return View("DatingApplication");
+            return View("DatingApplication", new Application());
         }
         [HttpPost]
         public IActionResult DatingApplication(Application response)
         {
-            _context.Applications.Add(response); // Add record to the database
-            _context.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                _context.Applications.Add(response); // Add record to the database
+                _context.SaveChanges();
 
-            return View("Confirmation", response);
+                return View("Confirmation", response);
+            }
+            else // Invalid data
+            {
+                ViewBag.Majors = _context.Majors
+                .OrderBy(x => x.MajorName)
+                .ToList();
+
+                return View(response);
+            }
+            
         }
 
         public IActionResult WaitList()
@@ -45,6 +57,46 @@ namespace DateMe.Controllers
                 .OrderBy(x => x.LastName).ToList();
 
             return View(applications);
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var recordToEdit = _context.Applications
+                .Single(x => x.ApplicationId == id);
+
+            ViewBag.Majors = _context.Majors
+                .OrderBy(x => x.MajorName)
+                .ToList();
+
+            return View("DatingApplication", recordToEdit);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Application updatedInfo)
+        {
+            _context.Update(updatedInfo);
+            _context.SaveChanges();
+
+            return RedirectToAction("WaitList");
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var recordToDelete = _context.Applications
+                .Single(x => x.ApplicationId == id);
+
+            return View(recordToDelete);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Application application)
+        {
+            _context.Applications.Remove(application);
+            _context.SaveChanges();
+
+            return RedirectToAction("WaitList");
         }
     }
 }

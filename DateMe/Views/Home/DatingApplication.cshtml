@@ -7,6 +7,9 @@
 <h1>Dating Application</h1>
 
 <form method="post">
+
+    <input type="hidden" asp-for="ApplicationId" />
+    
     <label asp-for="FirstName">First Name:</label>
     <input asp-for="FirstName"/>
     <br />
@@ -38,4 +41,6 @@
     <br />
 
     <button type="submit">Submit the Application</button>
+
+    <div asp-validation-summary="All"></div>
 </form>
